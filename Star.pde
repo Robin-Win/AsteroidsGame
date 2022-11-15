@@ -1,21 +1,16 @@
-//your variable declarations here
-Star[] nightSky = new Star[200];
-Spaceship Robin = new Spaceship();
-public void setup() 
+class Star //note that this class does NOT extend Floater
 {
-  size(500, 500);
-  for(int i = 0; i < nightSky.length; i++)
+  int C = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+  //your code here
+  private int myX, myY;
+  public Star()
   {
-    nightSky[i] = new Star();
+    myX = (int)(Math.random()*500);
+    myY = (int)(Math.random()*500);
   }
-  //your code here
-}
-public void draw() 
-{
-  background(0);
-  for(int i = 0; i < 200; i++){
-    nightSky[i].show();
+  public void show()
+  {
+    fill(C);
+    ellipse(myX, myY, 5, 5);
   }
-  Robin.show();
-  //your code here
 }
