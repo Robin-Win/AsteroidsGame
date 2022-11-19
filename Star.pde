@@ -1,6 +1,6 @@
 class Star //note that this class does NOT extend Floater
 {
-  int C = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+  int myC = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
   //your code here
   private int myX, myY;
   public Star()
@@ -10,7 +10,8 @@ class Star //note that this class does NOT extend Floater
   }
   public void show()
   {
-    fill(C);
+    fill(myC);
+    stroke(myC);
     ellipse(myX, myY, 5, 5);
   }
 }
