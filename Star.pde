@@ -1,7 +1,6 @@
 class Star //note that this class does NOT extend Floater
 {
   int myC = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
-  //your code here
   private int myX, myY;
   public Star()
   {
