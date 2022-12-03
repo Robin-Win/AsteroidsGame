@@ -1,4 +1,5 @@
 Spaceship Robin = new Spaceship();
+ArrayList <Asteroid> Ketchup = new ArrayList <Asteroid>();
 Star[] nightSky = new Star[200];
 
 public void setup()
@@ -8,12 +9,23 @@ public void setup()
   {
     nightSky[i] = new Star();
   }
+  for(int i = 0; i < 15; i++)
+  {
+    Ketchup.add(new Asteroid(i));
+  }
 }
 public void draw() 
 {
   background(0);
   for(int i = 0; i < 200; i++){
     nightSky[i].show();
+  }
+  for(int i = 0; i < Ketchup.size(); i++) {
+    Ketchup.get(i).show();
+    Ketchup.get(i).move();
+    float d = dist(Robin.getX(), Robin.getY(), Ketchup.get(i).getMyCenterX(), Ketchup.get(i).getMyCenterY());
+    if(d < 15)
+    Ketchup.remove(i);
   }
   if(keyPressed)
   {
@@ -27,7 +39,7 @@ public void draw()
       Robin.accelerate(0.1);
     }
     if(key == 'h' || key == 'H'){
-      Robin.setXspeed(0);
+      Robin.hyperspace(0);
     }
   }
   Robin.move();
