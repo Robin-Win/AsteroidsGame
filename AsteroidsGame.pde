@@ -1,5 +1,6 @@
+ArrayList <Bullet> pew = new ArrayList<Bullet>();
 Spaceship Robin = new Spaceship();
-ArrayList <Asteroid> Ketchup = new ArrayList <Asteroid>();
+ArrayList <Asteroid> Ketchup = new ArrayList<Asteroid>();
 Star[] nightSky = new Star[200];
 
 public void setup()
@@ -17,8 +18,14 @@ public void setup()
 public void draw() 
 {
   background(0);
+  Robin.move();
+  Robin.show();
   for(int i = 0; i < 200; i++){
     nightSky[i].show();
+  }
+  for(int i = 0; i < pew.size(); i++){
+    pew.get(i).show();
+    pew.get(i).move();
   }
   for(int i = 0; i < Ketchup.size(); i++) {
     Ketchup.get(i).show();
@@ -27,7 +34,15 @@ public void draw()
     if(d < 15)
     Ketchup.remove(i);
   }
-  if(keyPressed)
+  for(int i = 0; i < pew.size(); i++){
+    for(int j = 0; j < Ketchup.size(); j++){
+      if(dist(pew.get(i).getMyCenterX(), pew.get(i).getMyCenterY(), Ketchup.get(j).getMyCenterX(), Ketchup.get(j).getMyCenterY()) < 15) {
+        Ketchup.remove(j);
+      }
+    }
+  }
+}
+  public void keyPressed()
   {
     if(key == 'a' || key == 'A'){
       Robin.turn(-10);
@@ -41,7 +56,7 @@ public void draw()
     if(key == 'h' || key == 'H'){
       Robin.hyperspace(0);
     }
+    if(key == ' '){
+      pew.add(new Bullet(Robin));
+    }
   }
-  Robin.move();
-  Robin.show();
-}
